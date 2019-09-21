@@ -5,8 +5,9 @@ import withFirebase from './firebase/withFirebase';
 import NavItemLink from './components/NavItemLink';
 import Test from './pages/Test';
 import Home from './pages/Home';
+import Charity from './pages/Charity';
 
-const APP_NAME = 'TD';
+const APP_NAME = 'TD Bank';
 
 const navItems = [
   {
@@ -32,6 +33,12 @@ const navItems = [
     to: '/invest',
     exact: true,
     icon: 'account_balance'
+  },
+  {
+    label: 'TD for Charity',
+    to: '/charity',
+    exact: true,
+    icon: 'layers'
   }
 ];
 
@@ -39,8 +46,8 @@ const App = () => {
   return (
     <BrowserRouter>
       <NavigationDrawer
-        toolbarTitle=""
-        drawerTitle={APP_NAME}
+        toolbarTitle={APP_NAME}
+        drawerTitle="Signed in as John Doe"
         desktopDrawerType={NavigationDrawer.DrawerTypes.FULL_HEIGHT}
         navItems={navItems.map(props => (
           <NavItemLink {...props} key={props.to} />
@@ -49,6 +56,7 @@ const App = () => {
         <Switch>
           <Route exact path="/test" component={Test} />
           <Route exact path="/" component={Home} />
+          <Route exact path="/charity" component={Charity} />
         </Switch>
       </NavigationDrawer>
     </BrowserRouter>
