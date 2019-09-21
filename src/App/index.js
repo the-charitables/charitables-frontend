@@ -5,7 +5,7 @@ import withFirebase from './firebase/withFirebase';
 import Test from './pages/Test';
 import Home from './pages/Home';
 
-const APP_NAME = 'App Name Placeholder';
+const APP_NAME = 'TD';
 
 const App = () => {
   return (
