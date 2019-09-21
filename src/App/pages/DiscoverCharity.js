@@ -1,47 +1,86 @@
-import React from 'react';
-import { FontIcon, TextField } from 'react-md';
+import React, { useState } from 'react';
+import styled from 'styled-components';
 import { withRouter } from 'react-router';
-import CharityItem from '../components/CharityItem';
-import homelessness from '../../assets/homelessness.jpg';
-import environment from '../../assets/environment.jpg';
-import diseases from '../../assets/diseases.jpg';
+import {
+  Button,
+  Card,
+  Media,
+  TextField,
+  FontIcon,
+  List,
+  ListItem
+} from 'react-md';
+import Search from '../components/Search';
+import youthWithoutShelter from '../../assets/youth-without-shelter.jpg';
 
-const findCharities = 'Find charities';
+const findCharities = 'Find your charities';
+
+const Header = styled.div``;
+
+const StyledContainer = styled.div`
+  padding: 10px;
+`;
+
+const CancerList = ({ onClick }) => (
+  <List className="md-cell md-paper md-paper--1">
+    <ListItem primaryText="Prostate Cancer Canada" onClick={onClick} />
+    <ListItem primaryText="after BREAST CANCER" />
+    <ListItem primaryText="Pancreatic Cancer Canada Foundation" />
+  </List>
+);
+
+const MyList = () => (
+  <List className="md-cell md-paper md-paper--1">
+    <ListItem primaryText="Youth Without Shelter" />
+    <ListItem primaryText="Prostate Cancer Canada" />
+  </List>
+);
+
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+`;
 
 const DiscoverCharity = ({ history }) => {
-  const onClick = () => history.push('/charity4homeless');
-
+  const [canSearch, setSearch] = useState(true);
   return (
     <>
-      <TextField
-        id="phone-number-with-icon-left"
-        label="Discover charities"
-        type="tel"
-        leftIcon={<FontIcon>search</FontIcon>}
-        size={10}
-        fullWidth
-      />
-      <CharityItem
-        title="Homelessness"
-        subtitle="homeless description"
-        imgSrc={homelessness}
-        buttonText={findCharities}
-        onClick={onClick}
-      />
-      <CharityItem
-        title="Cancers and disease"
-        subtitle="Cancers description"
-        imgSrc={diseases}
-        buttonText={findCharities}
-        onClick={onClick}
-      />
-      <CharityItem
-        title="Environment"
-        subtitle="Environment description"
-        imgSrc={environment}
-        buttonText={findCharities}
-        onClick={onClick}
-      />
+      <Media>
+        <img src={youthWithoutShelter} />
+      </Media>
+      <StyledContainer>
+        {canSearch ? (
+          <>
+            <Header>{findCharities}</Header>
+            <TextField
+              placeholder="Discover"
+              value="Cancer"
+              leftIcon={<FontIcon>search</FontIcon>}
+              fullWidth={true}
+            />
+            <CancerList onClick={() => setSearch(false)} />
+          </>
+        ) : (
+          <>
+            <Header>My List</Header>
+            <MyList />
+            <ButtonContainer>
+              <Button flat primary swapTheming onClick={() => {}}>
+                Add Charities
+              </Button>
+              <Button
+                flat
+                primary
+                swapTheming
+                onClick={() => history.push('/donate')}
+              >
+                Next
+              </Button>
+            </ButtonContainer>
+          </>
+        )}
+      </StyledContainer>
     </>
   );
 };

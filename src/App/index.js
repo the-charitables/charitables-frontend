@@ -1,18 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { NavigationDrawer } from 'react-md';
 import withFirebase from './firebase/withFirebase';
 import NavItemLink from './components/NavItemLink';
-import CharityRoutes from './routes/CharityRoutes';
 import Test from './pages/Test';
 import Home from './pages/Home';
+import Charity from './pages/Charity';
+import DiscoverCharity from './pages/DiscoverCharity';
+import Donate from './pages/Donate';
 
 const APP_NAME = 'TD Bank';
 
 const navItems = [
   {
     label: 'Home',
-    to: '/home',
+    to: '/',
     exact: true,
     icon: 'home'
   },
@@ -43,6 +45,7 @@ const navItems = [
 ];
 
 const App = () => {
+  const [getStated, setGetStarted] = useState(false);
   return (
     <BrowserRouter>
       <NavigationDrawer
@@ -56,7 +59,19 @@ const App = () => {
         <Switch>
           <Route exact path="/test" component={Test} />
           <Route exact path="/" component={Home} />
-          <CharityRoutes />
+          <Route
+            exact
+            path="/charity"
+            render={props => (
+              <Charity
+                {...props}
+                getStated={getStated}
+                setGetStarted={setGetStarted}
+              />
+            )}
+          />
+          <Route exact path="/discover-charity" component={DiscoverCharity} />
+          <Route exact path="/donate" component={Donate} />
         </Switch>
       </NavigationDrawer>
     </BrowserRouter>
