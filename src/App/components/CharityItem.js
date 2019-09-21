@@ -8,7 +8,7 @@ const StyledButtonContainer = styled.div`
   justify-content: flex-end;
 `;
 
-const CharityItem = ({ title, subtitle, imgSrc }) => (
+const CharityItem = ({ title, subtitle, imgSrc, buttonText, onClick }) => (
   <Card className="cards__example md-cell md-cell--6 md-cell--8-tablet">
     <Media>
       <img src={imgSrc} alt="image" />
@@ -17,8 +17,8 @@ const CharityItem = ({ title, subtitle, imgSrc }) => (
       </MediaOverlay>
     </Media>
     <StyledButtonContainer>
-      <Button flat primary swapTheming>
-        Find charities
+      <Button flat primary swapTheming onClick={onClick}>
+        {buttonText}
       </Button>
     </StyledButtonContainer>
   </Card>

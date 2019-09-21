@@ -6,6 +6,8 @@ import NavItemLink from './components/NavItemLink';
 import Test from './pages/Test';
 import Home from './pages/Home';
 import Charity from './pages/Charity';
+import DiscoverCharity from './pages/DiscoverCharity';
+import CharityForHomeless from './pages/CharityForHomeless';
 
 const APP_NAME = 'TD Bank';
 
@@ -57,6 +59,12 @@ const App = () => {
           <Route exact path="/test" component={Test} />
           <Route exact path="/" component={Home} />
           <Route exact path="/charity" component={Charity} />
+          <Route exact path="/discover-charity" component={DiscoverCharity} />
+          <Route
+            exact
+            path="/charity4homeless"
+            component={CharityForHomeless}
+          />
         </Switch>
       </NavigationDrawer>
     </BrowserRouter>

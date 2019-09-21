@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import DiscoverCharity from './DiscoverCharity';
+import DiscoverCharity from '../DiscoverCharity';
 
 const StyledContainer = styled.div`
   padding: 10px;
