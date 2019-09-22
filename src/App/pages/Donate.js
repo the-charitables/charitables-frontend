@@ -10,7 +10,8 @@ import {
   Checkbox,
   Subheader,
   Button,
-  TextField
+  TextField,
+  SelectField
 } from 'react-md';
 
 const StyledContainer = styled.div`
@@ -29,6 +30,20 @@ const Percentage = () => (
     </div>
   </div>
 );
+
+const STRING_ITEMS = [
+  'Zero',
+  'One',
+  'Two',
+  'Three',
+  'Four',
+  'Five',
+  'Six',
+  'Seven',
+  'Eight',
+  'Nine',
+  'Ten'
+];
 
 const Donate = () => {
   const [checker1, setChekcer1] = useState(false);
@@ -78,6 +93,13 @@ const Donate = () => {
           }
         />
       </List>
+      <SelectField
+        id="select-field-2"
+        label="Strings"
+        placeholder="Placeholder"
+        className="md-cell"
+        menuItems={STRING_ITEMS}
+      />
       {checker1 && checker2 && <Percentage></Percentage>}
     </StyledContainer>
   );
