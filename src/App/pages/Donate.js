@@ -20,36 +20,41 @@ const StyledContainer = styled.div`
 
 const deleteIcon = <FontIcon key="chat">delete</FontIcon>;
 
+const SmallerStyledContainer = styled.div`
+  padding: 10px;
+`;
+
 const Percentage = () => (
-  <div>
-    <div>
-      Youth Without Shelter % <TextField placeholder="Discover" value={50} />
-    </div>
-    <div>
-      Prostate Cancer Canada % <TextField placeholder="Discover" value={50} />
-    </div>
-  </div>
+  <SmallerStyledContainer>
+    <TextField label="Youth Without Shelter %" value={50} />
+    <TextField label="Prostate Cancer Canada %" value={50} />
+  </SmallerStyledContainer>
 );
 
-const STRING_ITEMS = [
-  'Zero',
-  'One',
-  'Two',
-  'Three',
-  'Four',
-  'Five',
-  'Six',
-  'Seven',
-  'Eight',
-  'Nine',
-  'Ten'
-];
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+
+const DonationAmount = () => (
+  <SmallerStyledContainer>
+    <TextField label="Amount" />
+    <ButtonContainer>
+      <Button flat primary swapTheming>
+        Donate
+      </Button>
+    </ButtonContainer>
+  </SmallerStyledContainer>
+);
+
+const STRING_ITEMS = ['One time donation', 'Scheduled donation', 'Make change'];
 
 const Donate = () => {
   const [checker1, setChekcer1] = useState(false);
   const [checker2, setChekcer2] = useState(false);
   const [checker3, setChekcer3] = useState(false);
 
+  const [donationOption, setDonationOption] = useState(null);
   return (
     <StyledContainer>
       <h3>Balance this month: $10</h3>
@@ -95,12 +100,15 @@ const Donate = () => {
       </List>
       <SelectField
         id="select-field-2"
-        label="Strings"
+        label="Donate options"
         placeholder="Placeholder"
         className="md-cell"
         menuItems={STRING_ITEMS}
+        onChange={val => setDonationOption(val)}
+        disabled={!checker1 && !checker2}
       />
       {checker1 && checker2 && <Percentage></Percentage>}
+      {donationOption && <DonationAmount />}
     </StyledContainer>
   );
 };
