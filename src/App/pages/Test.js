@@ -11,7 +11,7 @@ const Test = () => {
   return (
     <StyledContainer>
       <h3>Test page</h3>
-      <Button raised onClick={onClick}>
+      <Button flat primary swapTheming onClick={onClick}>
         Hello, World!
       </Button>
     </StyledContainer>
