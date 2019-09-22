@@ -50,7 +50,7 @@ const App = () => {
     <BrowserRouter>
       <NavigationDrawer
         toolbarTitle={APP_NAME}
-        drawerTitle="Signed in as John Doe"
+        drawerTitle="Signed in as Harvey Mertes"
         desktopDrawerType={NavigationDrawer.DrawerTypes.FULL_HEIGHT}
         navItems={navItems.map(props => (
           <NavItemLink {...props} key={props.to} />
