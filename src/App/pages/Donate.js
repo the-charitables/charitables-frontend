@@ -130,14 +130,18 @@ const Donate = ({ donation }) => {
 };
 
 const mapStateToProps = state => {
-  const charities = get(state, 'firestore.ordered.charities');
-  if (charities) {
-    const balance0 = charities[0];
-    const balance1 = charities[1];
-    const donation = sum(balance0.balance) + sum(balance1.balance);
+  const transactions = get(state, 'firestore.ordered.transactions');
+
+  if (transactions && Array.isArray(transactions) && transactions.length) {
+    const donation = sum(
+      transactions
+        .filter(transaction => transaction.name !== 'Starbucks')
+        .map(transaction => transaction.money)
+    );
 
     return { donation };
   }
+
   return { donation: 0 };
 };
 
