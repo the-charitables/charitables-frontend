@@ -37,14 +37,23 @@ const ButtonContainer = styled.div`
 `;
 
 const DonationAmount = () => (
-  <SmallerStyledContainer>
-    <TextField label="Amount" />
-    <ButtonContainer>
-      <Button flat primary swapTheming>
-        Donate
-      </Button>
-    </ButtonContainer>
-  </SmallerStyledContainer>
+  <>
+    <SelectField
+      id="select-field-card"
+      label="Card"
+      placeholder="Please select a card"
+      className="md-cell"
+      menuItems={['79***36 - Chequing', '04*************07 - Visa']}
+    />
+    <SmallerStyledContainer>
+      {/* <TextField label="Amount" /> */}
+      <ButtonContainer>
+        <Button flat primary swapTheming>
+          Donate
+        </Button>
+      </ButtonContainer>
+    </SmallerStyledContainer>
+  </>
 );
 
 const STRING_ITEMS = ['One time donation', 'Scheduled donation', 'Make change'];
@@ -57,7 +66,7 @@ const Donate = () => {
   const [donationOption, setDonationOption] = useState(null);
   return (
     <StyledContainer>
-      <h3>Balance this month: $10</h3>
+      <h3>Donation this month: $10</h3>
       <List className="md-cell md-paper md-paper--1">
         <Subheader primaryText="My charities" />
         <ListItemControl
@@ -101,13 +110,18 @@ const Donate = () => {
       <SelectField
         id="select-field-2"
         label="Donate options"
-        placeholder="Placeholder"
+        placeholder="Choose how you want to donate"
         className="md-cell"
         menuItems={STRING_ITEMS}
         onChange={val => setDonationOption(val)}
         disabled={!checker1 && !checker2}
       />
-      {checker1 && checker2 && <Percentage></Percentage>}
+      {donationOption && (
+        <SmallerStyledContainer>
+          Every time you make a purchase, it will around up to nearest dollar.
+        </SmallerStyledContainer>
+      )}
+      {donationOption && checker1 && checker2 && <Percentage></Percentage>}
       {donationOption && <DonationAmount />}
     </StyledContainer>
   );
