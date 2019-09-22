@@ -28,8 +28,8 @@ const SmallerStyledContainer = styled.div`
 
 const Percentage = () => (
   <SmallerStyledContainer>
-    <TextField label="Youth Without Shelter %" value={50} />
-    <TextField label="Prostate Cancer Canada %" value={50} />
+    <TextField label="Youth Without Shelter %" />
+    <TextField label="Prostate Cancer Canada %" />
   </SmallerStyledContainer>
 );
 
