@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { get, sum } from 'lodash';
 import {
   Avatar,
   Divider,
@@ -58,7 +60,7 @@ const DonationAmount = () => (
 
 const STRING_ITEMS = ['One time donation', 'Scheduled donation', 'Make change'];
 
-const Donate = () => {
+const Donate = ({ donation }) => {
   const [checker1, setChekcer1] = useState(false);
   const [checker2, setChekcer2] = useState(false);
   const [checker3, setChekcer3] = useState(false);
@@ -66,7 +68,7 @@ const Donate = () => {
   const [donationOption, setDonationOption] = useState(null);
   return (
     <StyledContainer>
-      <h3>Donation this month: $10</h3>
+      <h3>Donation this month: ${donation}</h3>
       <List className="md-cell md-paper md-paper--1">
         <Subheader primaryText="My charities" />
         <ListItemControl
@@ -127,4 +129,16 @@ const Donate = () => {
   );
 };
 
-export default Donate;
+const mapStateToProps = state => {
+  const charities = get(state, 'firestore.ordered.charities');
+  if (charities) {
+    const balance0 = charities[0];
+    const balance1 = charities[1];
+    const donation = sum(balance0.balance) + sum(balance1.balance);
+
+    return { donation };
+  }
+  return { donation: 0 };
+};
+
+export default connect(mapStateToProps)(Donate);
