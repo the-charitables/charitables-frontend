@@ -1,21 +1,14 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { withRouter } from 'react-router';
-import {
-  Button,
-  Card,
-  Media,
-  TextField,
-  FontIcon,
-  List,
-  ListItem
-} from 'react-md';
-import Search from '../components/Search';
+import { Button, Media, TextField, FontIcon, List, ListItem } from 'react-md';
 import youthWithoutShelter from '../../assets/youth-without-shelter.jpg';
 
 const findCharities = 'Find your charities';
 
-const Header = styled.div``;
+const Header = styled.h2`
+  padding: 2px;
+`;
 
 const StyledContainer = styled.div`
   padding: 10px;
@@ -36,6 +29,10 @@ const MyList = () => (
   </List>
 );
 
+const ShorterTextField = styled(TextField)`
+  padding: 5px;
+`;
+
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: space-around;
@@ -53,7 +50,7 @@ const DiscoverCharity = ({ history }) => {
         {canSearch ? (
           <>
             <Header>{findCharities}</Header>
-            <TextField
+            <ShorterTextField
               placeholder="Discover"
               value="Cancer"
               leftIcon={<FontIcon>search</FontIcon>}
@@ -63,11 +60,11 @@ const DiscoverCharity = ({ history }) => {
           </>
         ) : (
           <>
-            <Header>My List</Header>
+            <Header>My Charity List</Header>
             <MyList />
             <ButtonContainer>
               <Button flat primary swapTheming onClick={() => {}}>
-                Add Charities
+                Add charities
               </Button>
               <Button
                 flat

@@ -1,44 +1,86 @@
-import React from 'react';
-import { withRouter } from 'react-router';
-import CharityItem from '../components/CharityItem';
-import youthWithoutShelter from '../../assets/youth-without-shelter.jpg';
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import {
+  Avatar,
+  Divider,
+  FontIcon,
+  List,
+  ListItem,
+  ListItemControl,
+  Checkbox,
+  Subheader,
+  Button,
+  TextField
+} from 'react-md';
 
-const buttonText = 'Learn more';
+const StyledContainer = styled.div`
+  padding: 10px 5px 5px 5px;
+`;
 
-const CharityForHomeless = ({ history }) => {
-  const onClick = () => history.push('/');
+const deleteIcon = <FontIcon key="chat">delete</FontIcon>;
+
+const Percentage = () => (
+  <div>
+    <div>
+      Youth Without Shelter % <TextField placeholder="Discover" value={50} />
+    </div>
+    <div>
+      Prostate Cancer Canada % <TextField placeholder="Discover" value={50} />
+    </div>
+  </div>
+);
+
+const Donate = () => {
+  const [checker1, setChekcer1] = useState(false);
+  const [checker2, setChekcer2] = useState(false);
+  const [checker3, setChekcer3] = useState(false);
+
   return (
-    <>
-      <CharityItem
-        title="Youth Without Shelter"
-        subtitle="Youth Without Shelter (YWS) is an emergency residence and referral agency serving homeless youth. We are dedicated to providing shelter and support programs for homeless youth ages 16­-24."
-        imgSrc={youthWithoutShelter}
-        buttonText={buttonText}
-        onClick={onClick}
-      />
-      <CharityItem
-        title="Covenant House"
-        subtitle="Opened in 1982, Covenant House Toronto was the second international site established in the highly recognized childcare agency. The 28-site network spans from Alaska to Latin America."
-        imgSrc={youthWithoutShelter}
-        buttonText={buttonText}
-        onClick={onClick}
-      />
-      <CharityItem
-        title="Raising the Roof"
-        subtitle="Raising the Roof are a national leader in long-term solutions to ending homelessness. Each year, they support more than 50 community agencies across the country, and work together with partners in all sectors to address the issue."
-        imgSrc={youthWithoutShelter}
-        buttonText={buttonText}
-        onClick={onClick}
-      />
-      <CharityItem
-        title="Eva's Initiatives for Homeless Youth"
-        subtitle="Eva's Initatives for Homeless Youth focus on meeting young people’s immediate needs at the same time that we provide skills, training, and support to help them build brighter futures."
-        imgSrc={youthWithoutShelter}
-        buttonText={buttonText}
-        onClick={onClick}
-      />
-    </>
+    <StyledContainer>
+      <h3>Balance this month: $10</h3>
+      <List className="md-cell md-paper md-paper--1">
+        <Subheader primaryText="My charities" />
+        <ListItemControl
+          rightIcon={deleteIcon}
+          primaryAction={
+            <Checkbox
+              id="list-control-chat-1"
+              name="list-control-primary"
+              label="Youth Without Shelter"
+              checked={checker1}
+              onChange={() => setChekcer1(!checker1)}
+            />
+          }
+        />
+        <ListItemControl
+          rightIcon={deleteIcon}
+          primaryAction={
+            <Checkbox
+              id="list-control-chat-2"
+              name="list-control-primary"
+              label="Prostate Cancer Canada"
+              checked={checker2}
+              onChange={() => setChekcer2(!checker2)}
+            />
+          }
+        />
+        <Subheader primaryText="People" />
+        <ListItemControl
+          rightIcon={deleteIcon}
+          primaryAction={
+            <Checkbox
+              id="list-control-chat-3"
+              name="list-control-primary"
+              label="John"
+              checked={checker3}
+              onChange={() => setChekcer3(!checker3)}
+            />
+          }
+        />
+      </List>
+      {checker1 && checker2 && <Percentage></Percentage>}
+    </StyledContainer>
   );
 };
 
-export default withRouter(CharityForHomeless);
+export default Donate;
