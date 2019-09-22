@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { get, sum } from 'lodash';
-import { List, Subheader } from 'react-md';
+import { List, Subheader, Divider } from 'react-md';
 import styled from 'styled-components';
 
 const StyledContainer = styled.div`
@@ -13,9 +13,9 @@ const Home = ({ donation }) => {
     <StyledContainer>
       <List className="md-cell md-paper md-paper--1">
         <Subheader primaryText="Recent transactions:" />
+        <Divider />
+        <Subheader primaryText={`Donation this month: $${donation}`} />
       </List>
-      <br />
-      <h2>Donation this month: ${donation}</h2>
     </StyledContainer>
   );
 };
