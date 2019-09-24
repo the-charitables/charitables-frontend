@@ -11,9 +11,8 @@ import {
   ExpansionList,
   ExpansionPanel
 } from 'react-md';
-import CharityItem from '../components/CharityItem';
+// import CharityItem from '../components/CharityItem';
 import youthWithoutShelter from '../../assets/youth-without-shelter.jpg';
-import cancerImg from '../../assets/cancer.jpg';
 
 const findCharities = 'Find your charities';
 
@@ -25,11 +24,11 @@ const StyledContainer = styled.div`
   padding: 10px;
 `;
 
-const StyledButtonContainer = styled.div`
-  margin: 5px;
-  display: flex;
-  justify-content: flex-end;
-`;
+// const StyledButtonContainer = styled.div`
+//   margin: 5px;
+//   display: flex;
+//   justify-content: flex-end;
+// `;
 
 const CancerList = ({ onClick }) => (
   // <List className="md-cell md-paper md-paper--1">
@@ -104,7 +103,7 @@ const DiscoverCharity = ({ history }) => {
   return (
     <>
       <Media>
-        <img src={youthWithoutShelter} />
+        <img src={youthWithoutShelter} alt="shelter" />
       </Media>
       <StyledContainer>
         {canSearch ? (

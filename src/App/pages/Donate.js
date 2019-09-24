@@ -3,11 +3,8 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { get, sum } from 'lodash';
 import {
-  Avatar,
-  Divider,
   FontIcon,
   List,
-  ListItem,
   ListItemControl,
   Checkbox,
   Subheader,
