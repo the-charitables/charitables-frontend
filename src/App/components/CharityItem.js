@@ -11,7 +11,7 @@ const StyledButtonContainer = styled.div`
 const CharityItem = ({ title, subtitle, imgSrc, buttonText, onClick }) => (
   <Card className="cards__example md-cell md-cell--6 md-cell--8-tablet">
     <Media>
-      <img src={imgSrc} alt="image" />
+      <img src={imgSrc} alt="charity" />
       <MediaOverlay>
         <CardTitle title={title} subtitle={subtitle}></CardTitle>
       </MediaOverlay>

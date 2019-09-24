@@ -3,11 +3,8 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { get, sum } from 'lodash';
 import {
-  Avatar,
-  Divider,
   FontIcon,
   List,
-  ListItem,
   ListItemControl,
   Checkbox,
   Subheader,
@@ -28,8 +25,8 @@ const SmallerStyledContainer = styled.div`
 
 const Percentage = () => (
   <SmallerStyledContainer>
-    <TextField label="Youth Without Shelter %" value={50} />
-    <TextField label="Prostate Cancer Canada %" value={50} />
+    <TextField label="Youth Without Shelter %" />
+    <TextField label="Prostate Cancer Canada %" />
   </SmallerStyledContainer>
 );
 
@@ -130,14 +127,18 @@ const Donate = ({ donation }) => {
 };
 
 const mapStateToProps = state => {
-  const charities = get(state, 'firestore.ordered.charities');
-  if (charities) {
-    const balance0 = charities[0];
-    const balance1 = charities[1];
-    const donation = sum(balance0.balance) + sum(balance1.balance);
+  const transactions = get(state, 'firestore.ordered.transactions');
+
+  if (transactions && Array.isArray(transactions) && transactions.length) {
+    const donation = sum(
+      transactions
+        .filter(transaction => transaction.name !== 'Starbucks')
+        .map(transaction => transaction.money)
+    );
 
     return { donation };
   }
+
   return { donation: 0 };
 };
 
