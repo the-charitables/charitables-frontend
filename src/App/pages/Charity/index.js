@@ -24,7 +24,7 @@ const Charity = ({ history, getStated, setGetStarted }) => {
   return (
     <>
       <Media>
-        <img src={charitable} />
+        <img src={charitable} alt="charitable" />
       </Media>
       <CardTitle title="Meet Charitable" subtitle="" />
       <CardText>
